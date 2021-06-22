@@ -20,6 +20,9 @@
 		B749AB20268137A300325A66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B749AB1F268137A300325A66 /* Assets.xcassets */; };
 		B749AB23268137A300325A66 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B749AB21268137A300325A66 /* LaunchScreen.storyboard */; };
 		B749AB2E2681383A00325A66 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B749AB2D2681383A00325A66 /* LoginController.swift */; };
+		B751A9622682513300A441CE /* TaskemployControllerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B751A9612682513300A441CE /* TaskemployControllerTableViewController.swift */; };
+		B751A9642682539F00A441CE /* ProductCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B751A9632682539F00A441CE /* ProductCategory.swift */; };
+		B751A9662682546B00A441CE /* ProductClassCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B751A9652682546B00A441CE /* ProductClassCell.swift */; };
 		B76725BC2681EE9A007E330B /* nodePrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76725BB2681EE9A007E330B /* nodePrice.swift */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +43,9 @@
 		B749AB22268137A300325A66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B749AB24268137A400325A66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B749AB2D2681383A00325A66 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		B751A9612682513300A441CE /* TaskemployControllerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskemployControllerTableViewController.swift; sourceTree = "<group>"; };
+		B751A9632682539F00A441CE /* ProductCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCategory.swift; sourceTree = "<group>"; };
+		B751A9652682546B00A441CE /* ProductClassCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductClassCell.swift; sourceTree = "<group>"; };
 		B76725BB2681EE9A007E330B /* nodePrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nodePrice.swift; sourceTree = "<group>"; };
 		E8BA0B77FFE2347A6C66B4BF /* Pods_ScannerPrice.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ScannerPrice.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -135,6 +141,7 @@
 		B749AB15268137A100325A66 /* ScannerPrice */ = {
 			isa = PBXGroup;
 			children = (
+				B751A960268250FF00A441CE /* TaskEmployeController */,
 				B732E3B826813A5F00172A84 /* StatisticController */,
 				B732E3B726813A4500172A84 /* NavigationController */,
 				B732E3B626813A3600172A84 /* ScannerController */,
@@ -173,6 +180,16 @@
 				B732E3B4268138F700172A84 /* MainViewController.swift */,
 			);
 			path = MainViewController;
+			sourceTree = "<group>";
+		};
+		B751A960268250FF00A441CE /* TaskEmployeController */ = {
+			isa = PBXGroup;
+			children = (
+				B751A9612682513300A441CE /* TaskemployControllerTableViewController.swift */,
+				B751A9632682539F00A441CE /* ProductCategory.swift */,
+				B751A9652682546B00A441CE /* ProductClassCell.swift */,
+			);
+			path = TaskEmployeController;
 			sourceTree = "<group>";
 		};
 		D1A7ADD1C2F59B3B2EC2CF7D /* Pods */ = {
@@ -300,10 +317,13 @@
 			files = (
 				B7240AC8268229CA003BFEE7 /* QRARScanner.swift in Sources */,
 				B732E3C126813AB600172A84 /* StatisticController.swift in Sources */,
+				B751A9662682546B00A441CE /* ProductClassCell.swift in Sources */,
 				B749AB1B268137A100325A66 /* ViewController.swift in Sources */,
 				B749AB2E2681383A00325A66 /* LoginController.swift in Sources */,
 				B732E3BD26813A9500172A84 /* ScannerController.swift in Sources */,
+				B751A9622682513300A441CE /* TaskemployControllerTableViewController.swift in Sources */,
 				B749AB17268137A100325A66 /* AppDelegate.swift in Sources */,
+				B751A9642682539F00A441CE /* ProductCategory.swift in Sources */,
 				B749AB19268137A100325A66 /* SceneDelegate.swift in Sources */,
 				B732E3BF26813AA600172A84 /* NavigationController.swift in Sources */,
 				B732E3B5268138F700172A84 /* MainViewController.swift in Sources */,

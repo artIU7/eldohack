@@ -1,0 +1,8 @@
+/MVP/client/ScannerPrice/Pods/
+/MVP/server/service_scan_ar/Dockerfile
+/MVP/server/service_scan_ar/docker-compose.yml
+/MVP/server/service_scan_ar/.build
+/MVP/server/service_scan_ar/.dockerignore
+/MVP/server/service_scan_ar/.swiftpm
+/presentation/video/*
+

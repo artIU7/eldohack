@@ -7,11 +7,38 @@
 
 import UIKit
 
-class TaskemployControllerTableViewController: UITableViewController {
-
+class TaskEmployeController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    var tabBarTag: Bool = true
+    
+    private let contacts = ProductAPI.getContacts() // model
+    let contactsTableView = UITableView() // view
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Задачи"
+        view.backgroundColor = .white
+               
+               view.addSubview(contactsTableView)
+               
+               contactsTableView.translatesAutoresizingMaskIntoConstraints = false
+               
+               contactsTableView.topAnchor.constraint(equalTo:view.safeAreaLayoutGuide.topAnchor).isActive = true
+               contactsTableView.leftAnchor.constraint(equalTo:view.safeAreaLayoutGuide.leftAnchor).isActive = true
+               contactsTableView.rightAnchor.constraint(equalTo:view.safeAreaLayoutGuide.rightAnchor).isActive = true
+               contactsTableView.bottomAnchor.constraint(equalTo:view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+               
+               contactsTableView.dataSource = self
+               contactsTableView.delegate = self
 
+               
+       //      contactsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "contactCell")
+               contactsTableView.register(ProductClassCell.self, forCellReuseIdentifier: "contactCell")
+
+
+           
+
+               navigationItem.title = "Contacts"
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -21,16 +48,44 @@ class TaskemployControllerTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+          return contacts.count
     }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Проверка ценников товаров"
+    }
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let vw = UIView()
+        vw.backgroundColor = UIColor.red
 
+        return vw
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+          return 100
+      }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        //      let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath)
+                let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath) as! ProductClassCell
+
+        //      cell.textLabel?.text = contacts[indexPath.row].name
+                cell.product = contacts[indexPath.row]
+
+                return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("index path\(indexPath.row)")
+        let scanQR = ScannerController()
+        //startTest.modalTransitionStyle = .flipHorizontal
+        scanQR.modalPresentationStyle = .fullScreen
+        scanQR.modalTransitionStyle = .crossDissolve
+        show(scanQR, sender: self)
+        //present(startTest, animated: true, completion: nil)
+        print("Launch second controller")
+        //let destination = TimeViewController()
+      //navigationController?.pushViewController(destination, animated: true)
+    }
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
@@ -85,5 +140,14 @@ class TaskemployControllerTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    override func viewWillAppear(_ animated: Bool) {
+           super.viewWillAppear(animated)
+          
+           if tabBarTag == true {
+            self.tabBarController?.tabBar.tintColor =  #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)//UIColor.blue
+            self.tabBarController?.tabBar.backgroundColor = #colorLiteral(red: 0.1156016763, green: 0.1961770704, blue: 0.3223885175, alpha: 1)//UIColor.cyan
+           } else {
+               self.tabBarController?.tabBar.tintColor = UIColor.white
+           }
+    }
 }

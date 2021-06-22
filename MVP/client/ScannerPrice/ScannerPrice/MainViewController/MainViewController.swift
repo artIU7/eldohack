@@ -20,8 +20,8 @@ class MainViewController: UITabBarController, UITabBarControllerDelegate {
         super.viewWillAppear(animated)
         
         // Create Tab one
-        let tabOne = ScannerController()
-        let tabOneBarItem = UITabBarItem(title: "Сканирование", image: UIImage(named: "scan_svg"), selectedImage: UIImage(named: "scan_svg"))
+        let tabOne = TaskEmployeController()
+        let tabOneBarItem = UITabBarItem(title: "Задание", image: UIImage(named: "scan_svg"), selectedImage: UIImage(named: "scan_svg"))
         
         tabOne.tabBarItem = tabOneBarItem
         
