@@ -40,7 +40,7 @@ func configLayout() {
     //
     view.addSubview(titleScreen)
     titleScreen.snp.makeConstraints { (marker) in
-        marker.left.right.equalToSuperview().inset(20)
+        marker.left.equalToSuperview().inset(20)
         marker.top.equalToSuperview().inset(80)
     }
     let imageView = UIImageView()
@@ -99,7 +99,7 @@ func configLayout() {
 //
 extension PreviewScanController {
 @objc func viewTours() {
-    let viewTours = TextDetectController()//ScannerController()
+    let viewTours = ScannerController()
     //startTest.modalTransitionStyle = .flipHorizontal
     viewTours.modalPresentationStyle = .fullScreen
     viewTours.modalTransitionStyle = .crossDissolve

@@ -6,3 +6,14 @@
 //
 
 import Foundation
+import UIKit
+import SnapKit
+
+class PriceCheckController: UIViewController {
+    var tabBarTag: Bool = true
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+    }
+}

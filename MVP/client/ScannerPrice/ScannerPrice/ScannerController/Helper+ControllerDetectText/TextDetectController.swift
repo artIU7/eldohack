@@ -15,6 +15,8 @@ class TextDetectController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     var imageView = UIImageView()
     var session = AVCaptureSession()
     var requests = [VNRequest]()
+    let layerButton = UIButton(type: .system)
+    let printButton = UIButton(type: .system)
     //Request for text recognition
     var textRecognitionRequest: VNRecognizeTextRequest?
     //Recognition queue
@@ -35,9 +37,47 @@ class TextDetectController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     func configurationLayout() {
         view.addSubview(imageView)
         imageView.snp.makeConstraints { (marker) in
-            marker.left.right.equalToSuperview().inset(20)
-            marker.top.bottom.equalToSuperview().inset(40)
+            marker.left.right.equalToSuperview().inset(0)
+            marker.top.equalToSuperview().inset(0)
+            marker.bottom.equalToSuperview().inset(0)
         }
+        let colorButton = #colorLiteral(red: 0.2088217232, green: 0.8087635632, blue: 0.364161254, alpha: 1)
+        // layer
+        //layerButton.setImage(UIImage(named: "layer_nf_x"), for: .normal)
+        layerButton.setTitle("закрыть", for: .normal)
+        layerButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 10)
+        layerButton.tintColor = .white
+        layerButton.backgroundColor = colorButton
+        layerButton.layer.cornerRadius = 10
+        
+        view.addSubview(layerButton)
+        layerButton.addTarget(self, action: #selector(self.layerAction(_:)), for: .touchUpInside)
+        layerButton.snp.makeConstraints { (marker) in
+            marker.height.equalTo(40)
+            marker.width.equalTo(80)
+            marker.top.equalToSuperview().inset(40)
+            marker.rightMargin.equalToSuperview().inset(5)
+        }
+        let printButtonColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
+        // layer
+        //layerButton.setImage(UIImage(named: "layer_nf_x"), for: .normal)
+        printButton.setTitle("печать", for: .normal)
+        printButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 10)
+        printButton.tintColor = .white
+        printButton.backgroundColor = printButtonColor
+        printButton.layer.cornerRadius = 10
+        
+        view.addSubview(printButton)
+        printButton.addTarget(self, action: #selector(self.layerAction(_:)), for: .touchUpInside)
+        printButton.snp.makeConstraints { (marker) in
+            marker.height.equalTo(40)
+            marker.width.equalTo(80)
+            marker.bottom.equalToSuperview().inset(40)
+            marker.rightMargin.equalToSuperview().inset(5)
+        }
+    }
+    @objc func layerAction(_ sender:UIButton) {
+        dismiss(animated: true)
     }
     func startLiveVideo() {
         //1
@@ -67,7 +107,7 @@ class TextDetectController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         //let textRequest = VNDetectTextRectanglesRequest(completionHandler: self.detectTextHandler)
         //textRequest.reportCharacterBoxes = true
         //Individual recognition request settings
-        test.minimumTextHeight = 0.011 // Lower = better quality
+        test.minimumTextHeight = 0.050//0.011 // Lower = better quality
         test.recognitionLevel = .accurate
         test.recognitionLanguages = ["en_US"]
         self.requests = [test]
@@ -88,20 +128,24 @@ class TextDetectController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         var index = 0
         for observation in result {
             index += 1
+           
             guard let topCandidate = observation!.topCandidates(1).first else { continue }
             if let recognizedBlock = self.getRecognizedDoubleBlock(topCandidate: topCandidate.string, observationBox: observation!.boundingBox) {
+                
                 self.textBlocks.append(recognizedBlock)
                 print(topCandidate.string)
+                let searchPrice = topCandidate.string
+                
                 //if frame[index] != nil {
                 //}
-                highlightWord(box: observation!)
+                //highlightWord(box: observation!)
+                DispatchQueue.main.async { [self] in
+                    highlightWord(box: observation!)
+                    // drawRecognizedBlocks()
+                }
             }
         }
         
-        //DispatchQueue.main.async { [self] in
-           // drawRecognizedBlocks()
-        //}
-
     }
     
     func highlightWord(box: VNRecognizedTextObservation) {
@@ -133,8 +177,8 @@ class TextDetectController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         
         let outline = CALayer()
         outline.frame = CGRect(x: xCord, y: yCord, width: width, height: height)
-        outline.borderWidth = 2.0
-        outline.borderColor = UIColor.red.cgColor
+        outline.borderWidth = 5.0
+        outline.borderColor = #colorLiteral(red: 1, green: 0, blue: 0.5640890044, alpha: 1)//UIColor.red.cgColor
         
         imageView.layer.addSublayer(outline)
     }
@@ -152,7 +196,7 @@ class TextDetectController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         //Only Doubles for this project
         //if let double = Double(finalString) {
         let value = Double(finalString)
-        
+        print("Double control \(value)")
         if value != nil {
             return RecognizedTextBlock(doubleValue: value!/*double*/, recognizedRect: observationBox)
         } else {

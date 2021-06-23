@@ -32,7 +32,7 @@ class ProductClassCell: UITableViewCell {
     
     let containerView:UIView = {
         let view = UIView()
-        view.backgroundColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 0.8524373627, green: 0.7962507731, blue: 0.8549019694, alpha: 1)
         view.layer.cornerRadius = 2.5
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true // this will make sure its children do not go out of the boundary

@@ -267,13 +267,16 @@ extension ScannerController : AVCaptureMetadataOutputObjectsDelegate {
             guard let stringValue = readableObject.stringValue else { return }
             AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
             found(code: stringValue)
-            detailCode.isHidden = false
-            if stringValue == "www.eldorado.ru/cat/detail/71548485/?utm_a=A662" {
-                findCode.text =  "HONOR 30S (CDY - NX9A)"
-                priceCode.text = "23 990"
-            } else {
-                findCode.text = stringValue
-            }
+            detailCode.isHidden = true
+           // if stringValue == "www.eldorado.ru/cat/detail/71548485/?utm_a=A662" {
+           //     findCode.text =  "HONOR 30S (CDY - NX9A)"
+           //     priceCode.text = "23 990"
+               
+          //  } else {
+            findCode.text = stringValue
+            
+            sheckPrice()
+          //  }
             //findCode.text = stringValue
             //let screenCentre : CGPoint = CGPoint(x: self.sceneView.bounds.midX, y: self.sceneView.bounds.midY)
             //let hitTestResults = sceneView.hitTest(screenCentre, types: [.existingPlaneUsingExtent])
@@ -303,6 +306,16 @@ extension ScannerController : AVCaptureMetadataOutputObjectsDelegate {
     
     func found(code: String) {
         print(code)
+    }
+    func sheckPrice() {
+        //dismiss(animated: true)
+        let viewTours = TextDetectController()//ScannerController()
+        //startTest.modalTransitionStyle = .flipHorizontal
+        viewTours.modalPresentationStyle = .fullScreen
+        viewTours.modalTransitionStyle = .crossDissolve
+        show(viewTours, sender: self)
+        //present(startTest, animated: true, completion: nil)
+        print("Launch TextDetect controller")
     }
 }
 extension ScannerController : ARSCNViewDelegate {
