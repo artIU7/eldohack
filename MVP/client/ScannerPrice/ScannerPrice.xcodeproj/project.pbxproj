@@ -9,11 +9,14 @@
 /* Begin PBXBuildFile section */
 		12C5A5F48ED04FC12BE82300 /* Pods_ScannerPrice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8BA0B77FFE2347A6C66B4BF /* Pods_ScannerPrice.framework */; };
 		B7240AC8268229CA003BFEE7 /* QRARScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7240AC7268229CA003BFEE7 /* QRARScanner.swift */; };
+		B72B04DC26833F9E0093CB72 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72B04DB26833F9E0093CB72 /* NetworkManager.swift */; };
+		B72B04DE2683408C0093CB72 /* Helper+eldoCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72B04DD2683408C0093CB72 /* Helper+eldoCatalog.swift */; };
 		B732E3B5268138F700172A84 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B732E3B4268138F700172A84 /* MainViewController.swift */; };
 		B732E3BD26813A9500172A84 /* ScannerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B732E3BC26813A9500172A84 /* ScannerController.swift */; };
 		B732E3BF26813AA600172A84 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B732E3BE26813AA600172A84 /* NavigationController.swift */; };
 		B732E3C126813AB600172A84 /* StatisticController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B732E3C026813AB600172A84 /* StatisticController.swift */; };
 		B736D9742683183500F4AB46 /* scn.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = B736D9732683183500F4AB46 /* scn.scnassets */; };
+		B736D97726832A9900F4AB46 /* eldosale.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B736D97626832A9900F4AB46 /* eldosale.mp3 */; };
 		B749AB17268137A100325A66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B749AB16268137A100325A66 /* AppDelegate.swift */; };
 		B749AB19268137A100325A66 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B749AB18268137A100325A66 /* SceneDelegate.swift */; };
 		B749AB1B268137A100325A66 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B749AB1A268137A100325A66 /* ViewController.swift */; };
@@ -34,11 +37,15 @@
 		024EE095F8A8E491BCDAF118 /* Pods-ScannerPrice.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScannerPrice.debug.xcconfig"; path = "Target Support Files/Pods-ScannerPrice/Pods-ScannerPrice.debug.xcconfig"; sourceTree = "<group>"; };
 		7295D04A6B490BF0DFDE4E3E /* Pods-ScannerPrice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScannerPrice.release.xcconfig"; path = "Target Support Files/Pods-ScannerPrice/Pods-ScannerPrice.release.xcconfig"; sourceTree = "<group>"; };
 		B7240AC7268229CA003BFEE7 /* QRARScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRARScanner.swift; sourceTree = "<group>"; };
+		B72B04DB26833F9E0093CB72 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkManager.swift; path = ../../../../../../../NetworkManager.swift; sourceTree = "<group>"; };
+		B72B04DD2683408C0093CB72 /* Helper+eldoCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Helper+eldoCatalog.swift"; path = "../../../../../../../Helper+eldoCatalog.swift"; sourceTree = "<group>"; };
 		B732E3B4268138F700172A84 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		B732E3BC26813A9500172A84 /* ScannerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerController.swift; sourceTree = "<group>"; };
 		B732E3BE26813AA600172A84 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		B732E3C026813AB600172A84 /* StatisticController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticController.swift; sourceTree = "<group>"; };
 		B736D9732683183500F4AB46 /* scn.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = scn.scnassets; sourceTree = "<group>"; };
+		B736D975268329FC00F4AB46 /* eldosale.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; path = eldosale.ogg; sourceTree = "<group>"; };
+		B736D97626832A9900F4AB46 /* eldosale.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = eldosale.mp3; sourceTree = "<group>"; };
 		B749AB13268137A100325A66 /* ScannerPrice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScannerPrice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B749AB16268137A100325A66 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B749AB18268137A100325A66 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +83,15 @@
 				E8BA0B77FFE2347A6C66B4BF /* Pods_ScannerPrice.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B72B04DA26833F8C0093CB72 /* NetworkManager */ = {
+			isa = PBXGroup;
+			children = (
+				B72B04DB26833F9E0093CB72 /* NetworkManager.swift */,
+				B72B04DD2683408C0093CB72 /* Helper+eldoCatalog.swift */,
+			);
+			path = NetworkManager;
 			sourceTree = "<group>";
 		};
 		B732E3B626813A3600172A84 /* ScannerController */ = {
@@ -117,6 +133,8 @@
 		B732E3BA26813A7B00172A84 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				B736D97626832A9900F4AB46 /* eldosale.mp3 */,
+				B736D975268329FC00F4AB46 /* eldosale.ogg */,
 				B732E3BE26813AA600172A84 /* NavigationController.swift */,
 				B7240AC7268229CA003BFEE7 /* QRARScanner.swift */,
 				B736D9732683183500F4AB46 /* scn.scnassets */,
@@ -153,6 +171,7 @@
 		B749AB15268137A100325A66 /* ScannerPrice */ = {
 			isa = PBXGroup;
 			children = (
+				B72B04DA26833F8C0093CB72 /* NetworkManager */,
 				B751A960268250FF00A441CE /* TaskEmployeController */,
 				B732E3B826813A5F00172A84 /* StatisticController */,
 				B732E3B726813A4500172A84 /* NavigationController */,
@@ -292,6 +311,7 @@
 				B749AB20268137A300325A66 /* Assets.xcassets in Resources */,
 				B736D9742683183500F4AB46 /* scn.scnassets in Resources */,
 				B749AB1E268137A100325A66 /* Main.storyboard in Resources */,
+				B736D97726832A9900F4AB46 /* eldosale.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,11 +369,13 @@
 				B732E3C126813AB600172A84 /* StatisticController.swift in Sources */,
 				B751A9662682546B00A441CE /* ProductClassCell.swift in Sources */,
 				B749AB1B268137A100325A66 /* ViewController.swift in Sources */,
+				B72B04DE2683408C0093CB72 /* Helper+eldoCatalog.swift in Sources */,
 				B749AB2E2681383A00325A66 /* PreviewScanController.swift in Sources */,
 				B732E3BD26813A9500172A84 /* ScannerController.swift in Sources */,
 				B751A9622682513300A441CE /* TaskemployControllerTableViewController.swift in Sources */,
 				B749AB17268137A100325A66 /* AppDelegate.swift in Sources */,
 				B751A9642682539F00A441CE /* ProductCategory.swift in Sources */,
+				B72B04DC26833F9E0093CB72 /* NetworkManager.swift in Sources */,
 				B7DDD6C52682C02D009AF365 /* TextDetectController.swift in Sources */,
 				B749AB19268137A100325A66 /* SceneDelegate.swift in Sources */,
 				B732E3BF26813AA600172A84 /* NavigationController.swift in Sources */,

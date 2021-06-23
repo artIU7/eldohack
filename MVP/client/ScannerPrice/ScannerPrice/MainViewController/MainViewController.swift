@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+var productCall = ProductAPI()
 class MainViewController: UITabBarController, UITabBarControllerDelegate {
     
     override func viewDidLoad() {
@@ -40,6 +40,9 @@ class MainViewController: UITabBarController, UITabBarControllerDelegate {
         
         
         self.viewControllers = [tabOne, tabTwo, tabTree]
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [self] in
+                fetch_eldo_api()
+            }
     }
     
     // UITabBarControllerDelegate method

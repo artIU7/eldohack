@@ -32,8 +32,8 @@ class ProductClassCell: UITableViewCell {
     
     let containerView:UIView = {
         let view = UIView()
-        view.backgroundColor = #colorLiteral(red: 0.8524373627, green: 0.7962507731, blue: 0.8549019694, alpha: 1)
-        view.layer.cornerRadius = 2.5
+        view.backgroundColor = #colorLiteral(red: 0.2088217232, green: 0.8087635632, blue: 0.364161254, alpha: 1)
+        view.layer.cornerRadius = 4.5
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true // this will make sure its children do not go out of the boundary
         return view
@@ -50,17 +50,17 @@ class ProductClassCell: UITableViewCell {
     
     let nameLabel:UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 20)
-        label.textColor = .black
+        label.font = UIFont.boldSystemFont(ofSize: 12)
+        label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     let priceLabel:UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 12)
+        label.font = UIFont.boldSystemFont(ofSize: 15)
         label.textColor =  .white
-        label.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+        label.backgroundColor = #colorLiteral(red: 0.9995597005, green: 0, blue: 0, alpha: 1)
         label.layer.cornerRadius = 5
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -69,9 +69,9 @@ class ProductClassCell: UITableViewCell {
     
     let dataLabel:UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 12)
+        label.font = UIFont.boldSystemFont(ofSize: 15)
         label.textColor =  .white
-        label.backgroundColor = #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)
+        label.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
         label.layer.cornerRadius = 5
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -107,8 +107,8 @@ class ProductClassCell: UITableViewCell {
         }
         containerView.addSubview(dataLabel)
         dataLabel.snp.makeConstraints {(marker) in
-            marker.left.equalTo(nameLabel).inset(nameLabel.frame.width + 120)
-            marker.top.equalToSuperview().inset(20)
+            marker.left.equalTo(nameLabel).inset(priceLabel.frame.width + 120)
+            marker.top.equalTo(nameLabel).inset(40)
         }
        //self.contentView.addSubview(profileImageView)
        // profileImageView.snp.makeConstraints { (marker) in

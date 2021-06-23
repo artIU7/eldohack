@@ -10,7 +10,7 @@ import AVFoundation
 import SnapKit
 import ARKit
 
-
+var searchingCode : String = ""
 class ScannerController: UIViewController {
     // custom tint tab bar
     var tabBarTag: Bool = true
@@ -274,7 +274,7 @@ extension ScannerController : AVCaptureMetadataOutputObjectsDelegate {
                
           //  } else {
             findCode.text = stringValue
-            
+            searchingCode = stringValue
             sheckPrice()
           //  }
             //findCode.text = stringValue

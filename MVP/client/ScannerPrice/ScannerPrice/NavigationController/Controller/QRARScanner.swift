@@ -10,7 +10,7 @@ import UIKit
 import ARKit
 import SnapKit
 import WebKit
-
+import AVFoundation
 
 class QRScannerAR: UIViewController,ARSCNViewDelegate, ARSessionDelegate {
     var sceneView = ARSCNView()
@@ -23,6 +23,9 @@ class QRScannerAR: UIViewController,ARSCNViewDelegate, ARSessionDelegate {
     var tabBarTag: Bool = true
     let updateQueue = DispatchQueue(label: Bundle.main.bundleIdentifier! +
         ".serialSceneKitQueue")
+    var player:AVPlayer?
+    var playerItem:AVPlayerItem?
+    var playButton:UIButton?
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "AR Помощник"
@@ -38,6 +41,7 @@ class QRScannerAR: UIViewController,ARSCNViewDelegate, ARSessionDelegate {
             marker.left.right.equalToSuperview().inset(0)
         }
         configLayout()
+        appendPlayer()
         // Do any additional setup after loading the view.
         startAR()
         initTap()
@@ -93,6 +97,48 @@ class QRScannerAR: UIViewController,ARSCNViewDelegate, ARSessionDelegate {
             //show(layerController, sender: self)
             //present(layerController, animated: true, completion: nil)
         }
+    func appendPlayer() {
+        //let url = URL(string: "https://media.izi.travel/3f41a4ab-3836-4daa-b5cb-b20a8f8235b5/ae9d8aef-8d13-416a-97a7-e6f63887061f.m4a?api_key=7c6c2db9-d237-4411-aa0e-f89125312494")
+        //let playerItem:AVPlayerItem = AVPlayerItem(url: url!)
+        
+        guard let url = Bundle.main.url(forResource: "eldosale", withExtension: "mp3") else {
+             return
+         }
+        let playerItem:AVPlayerItem = AVPlayerItem(url: url)
+        player = AVPlayer(playerItem: playerItem)
+        
+        let playerLayer=AVPlayerLayer(player: player!)
+        playerLayer.frame=CGRect(x:0, y:0, width:10, height:50)
+        self.view.layer.addSublayer(playerLayer)
+        playButton = UIButton(type: UIButton.ButtonType.system) as UIButton
+             let xPostion:CGFloat = 45
+             let yPostion:CGFloat = 90
+             let buttonWidth:CGFloat = 150
+             let buttonHeight:CGFloat = 45
+        playButton?.layer.cornerRadius = 25
+             
+        playButton!.frame = CGRect(x: xPostion, y: yPostion, width: buttonWidth, height: buttonHeight)
+        playButton!.backgroundColor = #colorLiteral(red: 1, green: 0.3027018627, blue: 0.5473834064, alpha: 1)
+        playButton!.setTitle("Play", for: UIControl.State.normal)
+        playButton!.tintColor = UIColor.black
+        playButton!.addTarget(self, action: #selector(self.playButtonTapped(_:)), for: .touchUpInside)
+        playButton?.isHidden = true
+        self.view.addSubview(playButton!)
+    }
+    @objc func playButtonTapped(_ sender:UIButton)
+    {
+        if player?.rate == 0
+        {
+            player!.play()
+            //playButton!.setImage(UIImage(named: "player_control_pause_50px.png"), forState: UIControlState.Normal)
+            playButton!.setTitle("Pause", for: UIControl.State.normal)
+
+        } else {
+            player!.pause()
+            //playButton!.setImage(UIImage(named: "player_control_play_50px.png"), forState: UIControlState.Normal)
+            playButton!.setTitle("Play", for: UIControl.State.normal)
+        }
+    }
     @objc func findAction(_ sender:UIButton) {
         isFindObject = true
         //runSession()
@@ -153,14 +199,11 @@ class QRScannerAR: UIViewController,ARSCNViewDelegate, ARSessionDelegate {
                     //let webView = WKWebView(frame: CGRect(x: 0, y: 0, width: 640, height: 480))
                     //let request = URLRequest(url: URL(string: "https://www.apple.com")!)
                     //webView.load(request)
-                    let plane = SCNPlane(width: 0.2,
-                                         height: 0.3)
-                    //plane.firstMaterial?.diffuse.contents = webView
-
-                    let planeNode = SCNNode(geometry: plane)
-                    planeNode.opacity = 0.25
-                    planeNode.eulerAngles.x = -.pi
-                    self.sceneView.scene.rootNode.addChildNode(planeNode)
+                    for elAr in eldo {
+                        if elAr.qrcode == tappednode.name {
+                            infoTarget(tappednode.position, value: elAr.title + "\n" + elAr.sale)
+                        }
+                    }
                 }
             }
         }
@@ -198,7 +241,8 @@ extension QRScannerAR {
                 sceneView.scene.rootNode.addChildNode(sphereNode)
                 } else {
                     if feature.messageString! == "DL-5018777" {
-                        addTarget(position: findQRCodes["www.eldorado.ru/cat/detail/71549603/?utm_a=A662"]!)
+                        addTarget(position: findQRCodes["www.eldorado.ru/cat/detail/71548485/?utm_a=A662"]!)
+                        player!.play()
                     }
              
                 }
@@ -229,10 +273,41 @@ extension QRScannerAR {
         //targetNode.constraints = [yFreeConstraint] //
         //targetNode.nodeAnimation(targetNode)
         targetNode.position = position//SCNVector3(0, 0, -0.5)
-        targetNode.scale = SCNVector3(0.007, 0.007, 0.007)
+        targetNode.scale = SCNVector3(0.015, 0.015, 0.015)
         //addChildNode(parentNode)
         sceneView.scene.rootNode.addChildNode(targetNode) //
     }
+    func infoTarget(_ position : SCNVector3, value : String) {
+              let material = SCNMaterial()
+              let textGeometry = SCNText(string: value, extrusionDepth: 0.5)
+              textGeometry.font = UIFont(name: "Arial", size: 2)
+              textGeometry.firstMaterial!.diffuse.contents = UIColor.white
+              let textNode = SCNNode(geometry: textGeometry)
+              let (min, max) = textGeometry.boundingBox
+              let dx = min.x + 0.5 * (max.x - min.x)
+              let dy = min.y + 0.5 * (max.y - min.y)
+              let dz = min.z + 0.5 * (max.z - min.z)
+              textNode.pivot = SCNMatrix4MakeTranslation(dx, dy, dz)
+
+              textNode.scale = SCNVector3(0.004, 0.004, 0.004)
+              let billboardScene = SCNScene(named: "scn.scnassets/info.scn")! //
+              let billboardNode = billboardScene.rootNode.childNode(withName: "board",
+                                                                       recursively: false)!
+              let plane = billboardNode//SCNPlane(width: 0.2, height: 0.2)
+              let blueMaterial = SCNMaterial()
+              blueMaterial.diffuse.contents = UIColor.red
+              plane.geometry?.materials.first?.diffuse.contents = blueMaterial
+              let parentNode = plane//SCNNode(geometry: plane) //
+              let yFreeConstraint = SCNBillboardConstraint()
+              yFreeConstraint.freeAxes = [.Y] // optionally
+              parentNode.constraints = [yFreeConstraint] //
+
+        parentNode.position = SCNVector3(position.x, position.y + 0.15, position.z)//position//SCNVector3(0, 0, -0.5)
+              parentNode.addChildNode(textNode)
+              parentNode.scale = SCNVector3(0.9, 0.9, 0.9)
+              //addChildNode(parentNode)
+              sceneView.scene.rootNode.addChildNode(parentNode) //
+          }
 }
 // методы session
 extension QRScannerAR {

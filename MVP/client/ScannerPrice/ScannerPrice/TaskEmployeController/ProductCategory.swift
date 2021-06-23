@@ -13,12 +13,11 @@ struct Product {
     let data:String?
 }
 class ProductAPI {
-    static func getContacts() -> [Product]{
-        let products = [
-            Product(name: "Смартфон Honor 30S 128GB Neon Purple (CDY-NX9A)", price: "23990", data: "ЭльдоSALE"),
-            Product(name: "Смартфон Honor 30S 128GB Neon Purple (CDY-NX9A)", price: "23990", data: "ЭльдоSALE"),
-            Product(name: "Смартфон Honor 30S 128GB Neon Purple (CDY-NX9A)", price: "23990", data: "ЭльдоSALE")
-        ]
-        return products
+    var products = [Product]()
+    func addProduct(eldoProduct : eldoCatalog) {
+        products.append(Product(name: eldoProduct.title, price: String(eldoProduct.price), data: eldoProduct.sale))
+    }
+    func getContacts() -> [Product]{
+        return self.products
     }
 }

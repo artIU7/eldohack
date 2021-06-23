@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>baseURL</key>
-	<string>http://127.0.0.1:1313/eldocatalog/</string>
+	<string>http://127.0.0.1:1830/eldocatalog/</string>
 	<key>followRedirect</key>
 	<true/>
 	<key>handleJSONPCallbacks</key>

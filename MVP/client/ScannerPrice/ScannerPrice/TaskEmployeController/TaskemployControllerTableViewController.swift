@@ -11,12 +11,14 @@ class TaskEmployeController: UIViewController, UITableViewDataSource, UITableVie
     
     var tabBarTag: Bool = true
     
-    private let contacts = ProductAPI.getContacts() // model
+    let contacts = productCall.getContacts()
+    
     let contactsTableView = UITableView() // view
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Задачи"
+        
         view.backgroundColor = .white
                
                view.addSubview(contactsTableView)
@@ -54,7 +56,7 @@ class TaskEmployeController: UIViewController, UITableViewDataSource, UITableVie
           return contacts.count
     }
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Проверка ценников товаров"
+        return "Список печати"
     }
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let vw = UIView()

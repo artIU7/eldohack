@@ -66,7 +66,7 @@ class TextDetectController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         printButton.tintColor = .white
         printButton.backgroundColor = printButtonColor
         printButton.layer.cornerRadius = 10
-        
+        printButton.isHidden = true
         view.addSubview(printButton)
         printButton.addTarget(self, action: #selector(self.layerAction(_:)), for: .touchUpInside)
         printButton.snp.makeConstraints { (marker) in
@@ -77,6 +77,11 @@ class TextDetectController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         }
     }
     @objc func layerAction(_ sender:UIButton) {
+        for qr in eldo {
+            if qr.qrcode == searchingCode {
+                productCall.addProduct(eldoProduct: qr)
+            }
+        }
         dismiss(animated: true)
     }
     func startLiveVideo() {
@@ -141,6 +146,15 @@ class TextDetectController: UIViewController, AVCaptureVideoDataOutputSampleBuff
                 //highlightWord(box: observation!)
                 DispatchQueue.main.async { [self] in
                     highlightWord(box: observation!)
+                    print("search price\(searchPrice)")
+                    if let price = Double(searchPrice)  {
+                        print("op: \(price)")
+                        if price != 10990.0 {
+                            printButton.isHidden = false
+                        }
+                    } else {
+                        printButton.isHidden = false
+                    }
                     // drawRecognizedBlocks()
                 }
             }
