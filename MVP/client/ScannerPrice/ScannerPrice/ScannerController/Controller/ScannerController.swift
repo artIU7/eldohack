@@ -42,7 +42,7 @@ class ScannerController: UIViewController {
         //runSession()
       
         avCaptureSession = AVCaptureSession()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [self] in
             guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else {
                 self.failed()
                 return
@@ -110,17 +110,20 @@ class ScannerController: UIViewController {
     }
     
     func configLayout() {
-        let colorButton = #colorLiteral(red: 0.5709930015, green: 0.6242560656, blue: 0.7402895111, alpha: 0.7)
+        let colorButton = #colorLiteral(red: 0.2088217232, green: 0.8087635632, blue: 0.364161254, alpha: 1)
         // layer
-        layerButton.setImage(UIImage(named: "layer_nf_x"), for: .normal)
+        //layerButton.setImage(UIImage(named: "layer_nf_x"), for: .normal)
+        layerButton.setTitle("закрыть", for: .normal)
+        layerButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 10)
         layerButton.tintColor = .white
         layerButton.backgroundColor = colorButton
-        layerButton.layer.cornerRadius = 20
+        layerButton.layer.cornerRadius = 10
+        
         view.addSubview(layerButton)
         layerButton.addTarget(self, action: #selector(self.layerAction(_:)), for: .touchUpInside)
         layerButton.snp.makeConstraints { (marker) in
-            marker.height.equalTo(42.5)
-            marker.width.equalTo(42.5)
+            marker.height.equalTo(40)
+            marker.width.equalTo(80)
             marker.top.equalToSuperview().inset(40)
             marker.rightMargin.equalToSuperview().inset(5)
         }
@@ -186,7 +189,7 @@ class ScannerController: UIViewController {
         addPointButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
         addPointButton.tintColor = .white
         addPointButton.backgroundColor = #colorLiteral(red: 0.7173891844, green: 0.8862745166, blue: 0.5983562226, alpha: 0.8498047077)//#colorLiteral(red: 0.1676526818, green: 0.1903925995, blue: 0.2580723713, alpha: 1)
-        addPointButton.layer.cornerRadius = 10
+        addPointButton.layer.cornerRadius = 2
         addPointButton.layer.shadowRadius = 1.5
         addPointButton.layer.shadowColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
         detailCode.addSubview(addPointButton)
@@ -195,14 +198,15 @@ class ScannerController: UIViewController {
         addPointButton.snp.makeConstraints { (marker) in
             marker.bottomMargin.equalToSuperview().inset(5)
             marker.top.equalTo(findCode).inset(45)
-            marker.height.equalTo(35)
-            marker.width.equalTo(75)
+            marker.height.equalTo(40)
+            marker.width.equalTo(100)
             marker.left.equalTo(priceCode).inset(100)
         }
     }
     // layer action
     @objc func layerAction(_ sender:UIButton) {
-        runSession()
+        dismiss(animated: true)
+        //runSession()
         //let layerController = LayerViewController()
         //layerController.modalPresentationStyle = .formSheet
             //layerController.modalTransitionStyle = .crossDissolve
@@ -222,10 +226,10 @@ class ScannerController: UIViewController {
            super.viewWillAppear(animated)
           
            if tabBarTag == true {
-            self.tabBarController?.tabBar.tintColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)//UIColor.blue
-            self.tabBarController?.tabBar.backgroundColor = #colorLiteral(red: 0.1156016763, green: 0.1961770704, blue: 0.3223885175, alpha: 1)//UIColor.cyan
+            self.tabBarController?.tabBar.tintColor = #colorLiteral(red: 0.2088217232, green: 0.8087635632, blue: 0.364161254, alpha: 1)//UIColor.blue
+            self.tabBarController?.tabBar.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)//UIColor.cyan
            } else {
-               self.tabBarController?.tabBar.tintColor = UIColor.white
+               self.tabBarController?.tabBar.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
            }
            if (avCaptureSession?.isRunning == false) {
             avCaptureSession.startRunning()
